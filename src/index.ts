@@ -10,6 +10,9 @@ import { SignupSchema, SignInSchema, NotesSchema } from "./types";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3001
+console.log(PORT)
+
 interface AuthenticatedRequest extends Request {
     userId?: string;
   }
@@ -48,7 +51,7 @@ app.post("/signup", async (req,res)=>{
 })
 
 
-app.post("/signin", async (req, res) => {
+app.post("/signin", async (req:Request, res:Response) => {
     const parsedData = SignInSchema.safeParse(req.body);
     if (!parsedData.success) { 
         res.status(411).json({ message: "Incorrect Inputs" });
@@ -236,4 +239,5 @@ app.delete("/notes/:id", middleware, async (req: AuthenticatedRequest, res: Resp
     }
 });
 
-app.listen(3001)
+app.listen(PORT)
+console.log(`Application is running on ${PORT}`)
