@@ -154,33 +154,6 @@ app.get("/notes/:id", middleware, async (req: AuthenticatedRequest, res: Respons
     }
 });
 
-//     try {
-//         const userId = req.userId; 
-//         const noteId = req.params.id; 
-//         const updateData = req.body; 
-
-//         if (!noteId) {
-//             return res.status(400).json({ message: "Note ID is required" });
-//         }
-
-//         const note = await Note.findOne({ _id: noteId, userId });
-
-//         if (!note) {
-//             return res.status(404).json({ message: "Note not found or unauthorized" });
-//         }
-
-//         if (updateData.title) note.title = updateData.title;
-//         if (updateData.content) note.content = updateData.content;
-//         if (updateData.tags) note.tags = updateData.tags;
-
-//         await note.save(); 
-
-//         res.json({ message: "Note updated successfully", note });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: "Internal server error" });
-//     }
-// });
 
 
 app.put("/notes/:id", middleware, async (req: AuthenticatedRequest, res: Response): Promise<any> => {
